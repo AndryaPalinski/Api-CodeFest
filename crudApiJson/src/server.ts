@@ -1,5 +1,10 @@
 import app from "./app";
+import dotenv from "dotenv";
+dotenv.config();
+
+const PORT = process.env.PORT || 5000;
+
 
 //Iniciar o servirdor.
-app.listen(1903, () => console.log('Hehe eita como escuta :D'))
+app.listen(PORT, () => console.log(`Eita como AINDA funciona :0`))
 
