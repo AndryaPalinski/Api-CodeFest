@@ -1,23 +1,22 @@
 const express = require('express'); 
-//Importar o pacote File System para manipular arquivos.
-const fs = require('fs');
-//Importar banco de dados de extensão .json.
-const data: string = './database.json';
+
+import userController from "../controller/userController";
 
 const router = express.Router(); 
 
 //Get- Exibe/Transmite dados. Post- Sempre usado para questionarios/formulários. Put-Usado para editar.  
-//Listar usuários. 
-router.get('/users', (req: any, res: any) =>{
-    const jsonData = fs.readFileSync(data); //<-- Analisa string JSON e transforma em um objeto JS. 
-    res.send(JSON.parse(jsonData));
-});
 
+//Listar usuários. 
+router.get('/users', userController.listenUsers);
+
+
+/*
 //Cadastrar usuários.
 router.post('/users', (req: any, res: any)=>{
     const jsonDataBase = fs.readFileSync(data); 
     let content = JSON.parse(jsonDataBase);
-    let index: number = Object.keys(content).length;//<-- Verifica a quantidade de objetos na base de dados.
+    //Verifica a quantidade de objetos na base de dados.
+    let index: number = Object.keys(content).length;
     
     content[index++] = req.body;
     const values = JSON.stringify(content);
@@ -70,5 +69,5 @@ router.delete('/user/:id', (req: any, res: any) => {
     //retorno amigável para o usuário que o endpoint
     res.send(`User with id ${userId} has been deleted ;--;`);
 });
-
+*/
 export default router;
