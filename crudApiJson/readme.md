@@ -1,0 +1,75 @@
+/*Criar uma base de dados (database)*/
+CREATE DATABASE PETSHOP; 
+/*Selecionar a base criada*/
+USE PETSHOP;
+/*Criar uma tabela de dados*/
+CREATE TABLE ANIMALS (
+    ID_ANIMALS INT NOT NULL AUTO_INCREMENT,
+    DS_NAME VARCHAR(255) NOT NULL,
+    NM_AGE INT,
+    FL_SEX ENUM('M', 'F'),
+    DT_CREATED DATETIME DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (ID_ANIMALS)
+); 
+/*Comando SQL para visualizar =todos= os dados da tabela * = Todos os valores */
+SELECT * FROM ANIMALS;
+/*Deletar tabela*/
+DROP TABLE ANIMALS; 
+/*Inserir dados na tabela (CAMPOS A MAIS +ERRO+)*/
+INSERT INTO ANIMALS(DS_NAME, NM_AGE, FL_SEX, ID_CLIENT) 
+VALUES('Doguinho Marshal', 4 , 'F', 3); 
+/*Visualizar colunas com alias(apelidos)*/
+SELECT A.DS_NAME, A.NM_AGE FROM ANIMALS A;
+/*Visualizar colunas com condicional*/
+SELECT A.DS_NAME FROM ANIMALS A WHERE A.DS_NAME = 'Doguinho';
+/*Atualizar dados*/
+UPDATE ANIMALS SET ID_CLIENT = 1 WHERE ID_ANIMALS = 1; 
+/*Deletar dados*/
+DELETE FROM ANIMALS WHERE FL_SEX = 'F' AND ID_ANIMALS = 4;
+DELETE FROM ANIMALS WHERE ID_ANIMALS != 6; 
+/*ctrl + A*/
+/*****************************************************************************/
+/*Criando conexão com o banco de dados*/
+CREATE TABLE clients (
+    ID_CLIENT INT NOT NULL AUTO_INCREMENT,
+    DS_NAME VARCHAR(255) NOT NULL,
+    NM_CELLPHONE INT,
+    DS_STATUS ENUM('A', 'I'),
+    DT_CREATED DATETIME DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (ID_client)
+);
+SELECT * FROM CLIENTS; 
+
+INSERT INTO clients(DS_NAME, NM_CELLPHONE, DS_STATUS)
+VALUES ('Michael', 1 , 'I'); 
+/*****************************************************************************/
+/*Visualizar tabelas de dados*/
+SHOW TABLES; 
+SELECT * FROM CLIENTS;
+SELECT ID_CLIENTS, DS_NAME, NM_CELLPHONE FROM CLIENTS WHERE NM_CELLPHONE IS NULL;
+UPDATE CLIENTS 
+SET 
+    NM_CELLPHONE = 99045695678
+WHERE
+    ID_CLIENT = 1;
+    DESC ANIMALS;
+ /*Criar uma tabela com +chave estrangeira+*/   
+    CREATE TABLE ADRESS (
+    ID_ADRESS INT NOT NULL AUTO_INCREMENT,
+    DS_CITY VARCHAR(255) NOT NULL,
+    NM_NUMBER INT,
+    ID_CLIENT INT,
+	primary key(ID_ADRESS),
+    foreign key(ID_CLIENT) REFERENCES CLIENTS(ID_CLIENT)
+    );
+    DESC ADRESS;
+    ALTER TABLE ANIMALS ADD COLUMN ID_CLIENT INT;
+    ALTER TABLE ANIMALS ADD FOREIGN KEY(ID_CLIENT) REFERENCES CLIENTS(ID_CLIENT);
+    ALTER TABLE ANIMALS ADD COLUMN DS_NICKNAME VARCHAR(80);
+    SELECT * FROM ANIMALS;
+    ALTER TABLE ANIMALS DROP COLUMN DS_NICKNAME;
+    SELECT C.DS_NAME, A.DS_NAME, A.NM_AGE 
+      FROM CLIENTS C, ANIMALS A 
+      WHERE C.ID_CLIENT = A.ID_CLIENT;
+    SELECT DS_NAME FROM ANIMALS WHERE DS_NAME LIKE '%CAR%';
+    /* PORCENTAGEM NA FRENTE -> NOMES DEPOIS /// PORCENTAGEM NA ATRAS -> NOMES NA FRENTE*/

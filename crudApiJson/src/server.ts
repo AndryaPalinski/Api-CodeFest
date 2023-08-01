@@ -5,4 +5,4 @@ dotenv.config();
 const PORT = process.env.PORT || 5000;
 
 //Iniciar o servirdor.
-app.listen(PORT, () => console.log(`Tá funcionando :D`))
+app.listen(PORT, () => console.log(`Eita como (ainda) funciona:D`))
